@@ -1,0 +1,30 @@
+# This repo is PUBLIC. Everything this tool reads or writes is a real environment
+# file, so ignore by default and opt templates back in explicitly. (OYS-486)
+
+# Dependencies
+node_modules/
+
+# Env files of any shape: .env, .env.stage, .env.actual-values, merged-env.env, ...
+.env
+.env.*
+*.env
+*.actual-values
+# Templates with keys only and EMPTY values may be committed.
+!.env.example
+
+# Generated / pulled parameter and value dumps (SSM, k8s, Helm)
+parameters.yaml
+values.yaml
+*.parameters.yaml
+environment-list.txt
+
+# Ad-hoc command dumps that tend to embed secrets
+github-commands.txt
+
+# Keys and certificates
+*.pem
+*.key
+*.p12
+
+# OS / editor noise
+.DS_Store
