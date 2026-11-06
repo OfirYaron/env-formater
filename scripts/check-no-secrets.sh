@@ -25,7 +25,7 @@ templates=$(git ls-files -- '*.example')
 while IFS= read -r template; do
   [ -n "$template" ] || continue
   rc=0
-  lines=$(grep -nE '^[[:space:]]*(export[[:space:]]+)?[A-Za-z_][A-Za-z0-9_.-]*[[:space:]]*=[[:space:]]*[^[:space:]"'"'"']|^[[:space:]]*(export[[:space:]]+)?[A-Za-z_][A-Za-z0-9_.-]*[[:space:]]*=[[:space:]]*("[^"]+"|'"'"'[^'"'"']+'"'"')' "$template" | cut -d: -f1 | paste -sd, -) || rc=$?
+  lines=$(grep -nE '^[[:space:]]*(export[[:space:]]+)?[A-Za-z_][A-Za-z0-9_.-]*[[:space:]]*=[[:space:]]*[^[:space:]"'"'"']|^[[:space:]]*(export[[:space:]]+)?[A-Za-z_][A-Za-z0-9_.-]*[[:space:]]*=[[:space:]]*("[^"]+"|'"'"'[^'"'"']+'"'"')' -- "$template" | cut -d: -f1 | paste -sd, -) || rc=$?
   [ "$rc" -le 1 ] || exit "$rc"
   if [ -n "$lines" ]; then
     echo "Template has non-empty values: $template (lines: $lines)"
