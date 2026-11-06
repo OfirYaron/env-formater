@@ -4,10 +4,11 @@
 # Dependencies
 node_modules/
 
-# Env files of any shape: .env, .env.stage, .env.actual-values, merged-env.env, ...
-.env
-.env.*
+# Env files of any shape: .env, .env1, .envrc, .env.stage, .env.actual-values,
+# merged-env.env, prod.env.bak, ...
+.env*
 *.env
+*.env.*
 *.actual-values
 # Templates with keys only and EMPTY values may be committed.
 !.env.example
@@ -17,6 +18,10 @@ parameters.yaml
 values.yaml
 *.parameters.yaml
 environment-list.txt
+
+# Terraform variable files, one of this tool's output formats
+*.tfvars
+*.tfvars.json
 
 # Ad-hoc command dumps that tend to embed secrets
 github-commands.txt
